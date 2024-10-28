@@ -46,17 +46,18 @@ jobs:
           context: ./simple-api
           # Note: tags has to be all lower-case
           tags:  ${{secrets.Docker_Hub_Username}}/tp-devops-simple-api:latest
-
+          push: ${{ github.ref == 'refs/heads/main' }}
       - name: Build image and push database
           # DO the same for database
         uses: docker/build-push-action@v3
         with:
-                context: ./database
-                tags: ${{secrets.Docker_Hub_Username}}/tp-devops-database:latest
-
+          context: ./database
+          tags: ${{secrets.Docker_Hub_Username}}/tp-devops-database:latest
+          push: ${{ github.ref == 'refs/heads/main' }}
       - name: Build image and push httpd
           # DO the same for httpd
         uses: docker/build-push-action@v3
         with:
-                context: ./http-server
-                tags: ${{secrets.Docker_Hub_Username}}/tp-devops-httpd:latest
+          context: ./http-server
+          tags: ${{secrets.Docker_Hub_Username}}/tp-devops-httpd:latest
+          push: ${{ github.ref == 'refs/heads/main' }}
