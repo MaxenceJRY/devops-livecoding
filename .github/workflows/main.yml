@@ -55,5 +55,5 @@ build-and-push-docker-image:
         # DO the same for httpd
       uses: docker/build-push-action@v3
       with:
-              context: ./httpd
+              context: ./http-server
               tags: ${{secrets.Docker_Hub_Username}}/tp-devops-httpd:latest
